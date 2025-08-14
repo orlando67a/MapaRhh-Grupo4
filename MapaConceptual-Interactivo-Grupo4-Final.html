@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mapa Conceptual Interactivo – Planificación Estratégica de RRHH (SmartTech)</title>
+<style>
+  :root{
+    --bg:#0f172a;
+    --panel:#111827;
+    --edge:#94a3b8;
+    --node:#1f2937;
+    --node-accent:#e11d48;
+    --text:#e5e7eb;
+    --muted:#cbd5e1;
+    --glow:#fca5a5;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#0b1220 0%, #0f172a 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial;}
+  header{padding:16px 20px;position:sticky;top:0;background:linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.6));backdrop-filter: blur(6px);border-bottom:1px solid #1f2937;z-index:2}
+  h1{margin:.2rem 0;font-size:1.15rem;letter-spacing:.3px}
+  .sub{color:var(--muted);font-size:.9rem}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px}
+  .card{background:linear-gradient(180deg,#0b1324,#0f192e);border:1px solid #1f2937;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:12px}
+  /* Tooltip */
+  .tooltip{position:fixed; pointer-events:none; background:#0b1220; color:var(--text);
+           border:1px solid #334155; padding:10px 12px; border-radius:12px; font-size:.9rem; max-width:320px;
+           opacity:0; transform:translate(-50%,-120%); transition:opacity .18s ease, transform .18s ease, filter .18s ease;
+           filter: drop-shadow(0 8px 24px rgba(0,0,0,.45)); z-index:50}
+  .tooltip.show{opacity:1; transform:translate(-50%,-120%)}
+  .tooltip .title{font-weight:700;margin-bottom:6px}
+  .legend{display:flex;gap:10px;align-items:center;color:#cbd5e1;font-size:.85rem;margin-top:10px}
+  .legend span.dot{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--edge)}
+  /* SVG nodes */
+  svg{width:100%;height:auto}
+  .node rect{fill:var(--node);stroke:#334155;stroke-width:1.25px;rx:12;ry:12;transition:filter .18s ease, stroke .18s ease}
+  .node text{fill:#e5e7eb;font-size:12px}
+  .node.center rect{fill:#1f2937;stroke:var(--node-accent)}
+  .node.folder rect{fill:#3a2f12;stroke:#fde68a}
+  .edge{stroke:var(--edge);stroke-width:1.6px;opacity:.9;marker-end:url(#arrow); pointer-events:none}
+  .edge.dashed{stroke-dasharray:6 6;opacity:.7}
+  .node:hover rect{filter: drop-shadow(0 6px 16px rgba(252,165,165,.25)); stroke:var(--glow)}
+  .hint{font-size:.85rem;color:#94a3b8;margin:8px 0 0}
+  @media (max-width: 640px){ .sub{display:none} }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Mapa Conceptual Interactivo – Planificación Estratégica de RRHH (SmartTech)</h1>
+    <div class="sub">Grupo 4. Dirección Estratégica de RRHH. <br> Maestría en Dirección Estratégica y Gestión de la Innovación, UASD  <br> Orlando | Sylvie-Ann | Rosmery | Mayeline |San Pedro | Massiel | Maria del Pilar </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <svg viewBox="0 0 1200 900" role="img" aria-label="Mapa conceptual interactivo">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--edge)"></path>
+        </marker>
+      </defs>
+
+      <!-- 1) EDGES FIRST: they will render beneath nodes -->
+      <g id="edges">
+        <!-- Core spokes -->
+        <line class="edge" x1="600" y1="180" x2="250" y2="295"></line>
+        <line class="edge" x1="600" y1="180" x2="600" y2="295"></line>
+        <line class="edge" x1="600" y1="180" x2="850" y2="295"></line>
+        <line class="edge" x1="600" y1="180" x2="280" y2="520"></line>
+        <line class="edge" x1="600" y1="180" x2="600" y2="520"></line>
+        <line class="edge" x1="600" y1="180" x2="920" y2="520"></line>
+        <line class="edge dashed" x1="600" y1="180" x2="600" y2="770"></line>
+
+        <!-- Análisis children -->
+        <line class="edge" x1="250" y1="330" x2="120" y2="356"></line>
+        <line class="edge" x1="250" y1="330" x2="330" y2="356"></line>
+
+        <!-- Objetivos children -->
+        <line class="edge" x1="600" y1="330" x2="520" y2="356"></line>
+        <line class="edge" x1="600" y1="330" x2="640" y2="356"></line>
+
+        <!-- Estrategia children -->
+        <line class="edge" x1="280" y1="520" x2="150" y2="580"></line>
+        <line class="edge" x1="280" y1="520" x2="305" y2="580"></line>
+        <line class="edge" x1="280" y1="520" x2="455" y2="580"></line>
+
+        <!-- Implementación children -->
+        <line class="edge" x1="600" y1="520" x2="615" y2="580"></line>
+        <line class="edge" x1="600" y1="520" x2="770" y2="580"></line>
+        <line class="edge" x1="600" y1="520" x2="925" y2="580"></line>
+
+        <!-- Seguimiento children -->
+        <line class="edge" x1="1000" y1="560" x2="1005" y2="640"></line>
+        <line class="edge" x1="1000" y1="560" x2="1140" y2="640"></line>
+
+        <!-- Indicadores children -->
+        <line class="edge" x1="600" y1="810" x2="280" y2="843"></line>
+        <line class="edge" x1="600" y1="810" x2="440" y2="843"></line>
+        <line class="edge" x1="600" y1="810" x2="610" y2="843"></line>
+        <line class="edge" x1="600" y1="810" x2="805" y2="843"></line>
+        <line class="edge" x1="600" y1="810" x2="1020" y2="843"></line>
+      </g>
+
+      <!-- 2) NODES AFTER: rectangles/texts will cover edges where they touch -->
+      <!-- Central -->
+      <g class="node center" data-title="Planificación Estratégica de RRHH – SmartTech"
+         data-desc="Proceso integral para alinear el talento con la estrategia de negocio y la expansión a Centroamérica/Panamá. Incluye análisis, definición de objetivos, diseño de estrategias, implementación y mejora continua."
+         transform="translate(500,100)">
+        <rect width="200" height="80"></rect>
+        <text x="100" y="32" text-anchor="middle" font-size="14">Planificación Estratégica</text>
+        <text x="100" y="54" text-anchor="middle" font-size="14">de RRHH (SmartTech)</text>
+      </g>
+
+      <!-- First level -->
+      <g class="node" transform="translate(150,260)" data-title="Análisis del Entorno"
+         data-desc="Interno: auditoría de fuerza laboral, competencias y desempeño. Externo: tendencias del mercado de talento y benchmarking competitivo.">
+        <rect width="200" height="70"></rect>
+        <text x="100" y="30" text-anchor="middle">Análisis del Entorno</text>
+        <text x="100" y="48" text-anchor="middle">(Interno / Externo)</text>
+      </g>
+
+      <g class="node" transform="translate(500,260)" data-title="Definición de Objetivos"
+         data-desc="Establecer objetivos SMART y determinar perfiles y competencias críticas para cada fase de expansión.">
+        <rect width="200" height="70"></rect>
+        <text x="100" y="30" text-anchor="middle">Definición de Objetivos</text>
+        <text x="100" y="48" text-anchor="middle">y Necesidades</text>
+      </g>
+
+      <g class="node" transform="translate(750,260)" data-title="Diagnóstico de Brechas"
+         data-desc="Comparar competencias actuales vs. necesarias. Identificar vacíos de talento y áreas de riesgo.">
+        <rect width="200" height="70"></rect>
+        <text x="100" y="40" text-anchor="middle">Diagnóstico de Brechas</text>
+      </g>
+
+      <g class="node" transform="translate(150,480)" data-title="Diseño de Estrategia de Talento"
+         data-desc="Adquisición: fuentes, employer branding, alianzas académicas. Desarrollo: capacitación, mentoring, gestión de carrera. Retención: compensación, reconocimientos, sucesión, bienestar/clima.">
+        <rect width="260" height="80"></rect>
+        <text x="130" y="32" text-anchor="middle">Diseño de la Estrategia</text>
+        <text x="130" y="54" text-anchor="middle">de Talento</text>
+      </g>
+
+      <g class="node" transform="translate(520,480)" data-title="Implementación"
+         data-desc="Calendarización y responsables, plan piloto por área, plan de comunicación por canales corporativos.">
+        <rect width="160" height="80"></rect>
+        <text x="80" y="44" text-anchor="middle">Implementación</text>
+      </g>
+
+      <g class="node" transform="translate(900,480)" data-title="Seguimiento y Ajuste"
+         data-desc="Monitoreo regular de indicadores, revisión periódica y adaptación según resultados.">
+        <rect width="200" height="80"></rect>
+        <text x="100" y="44" text-anchor="middle">Seguimiento y Ajuste</text>
+      </g>
+
+      <g class="node folder" transform="translate(500,740)" data-title="Indicadores de Éxito"
+         data-desc="Rotación voluntaria, Time-to-Fill, % de brechas cubiertas, promociones internas, índice de compromiso (eNPS).">
+        <rect width="200" height="70"></rect>
+        <text x="100" y="30" text-anchor="middle">Indicadores de Éxito</text>
+        <text x="100" y="48" text-anchor="middle">(KPIs)</text>
+      </g>
+
+      <!-- Second level nodes -->
+      <!-- Análisis -->
+      <g class="node" transform="translate(40,360)" data-title="Interno"
+         data-desc="Auditoría de fuerza laboral, inventario de competencias, desempeño y potencial.">
+        <rect width="140" height="46"></rect>
+        <text x="70" y="28" text-anchor="middle">Interno</text>
+      </g>
+      <g class="node" transform="translate(240,360)" data-title="Externo"
+         data-desc="Benchmarking competitivo y tendencias del mercado de talento (salarios, beneficios, clima y rotación).">
+        <rect width="140" height="46"></rect>
+        <text x="70" y="28" text-anchor="middle">Externo</text>
+      </g>
+
+      <!-- Objetivos -->
+      <g class="node" transform="translate(450,360)" data-title="SMART"
+         data-desc="Específicos, Medibles, Alcanzables, Relevantes y con Tiempo definido.">
+        <rect width="90" height="46"></rect>
+        <text x="45" y="28" text-anchor="middle">SMART</text>
+      </g>
+      <g class="node" transform="translate(560,360)" data-title="Perfiles y competencias"
+         data-desc="Definir perfiles y competencias críticas por etapa de expansión a Centroamérica/Panamá.">
+        <rect width="180" height="46"></rect>
+        <text x="90" y="28" text-anchor="middle">Perfiles y competencias</text>
+      </g>
+
+      <!-- Estrategia -->
+      <g class="node" transform="translate(80,580)" data-title="Adquisición"
+         data-desc="Fuentes de reclutamiento, employer branding, partnerships académicos.">
+        <rect width="140" height="46"></rect>
+        <text x="70" y="28" text-anchor="middle">Adquisición</text>
+      </g>
+      <g class="node" transform="translate(240,580)" data-title="Desarrollo"
+         data-desc="Planes de capacitación, mentoring individual, gestión de carrera.">
+        <rect width="130" height="46"></rect>
+        <text x="65" y="28" text-anchor="middle">Desarrollo</text>
+      </g>
+      <g class="node" transform="translate(390,580)" data-title="Retención"
+         data-desc="Compensaciones variables, reconocimientos, sucesión, bienestar y clima.">
+        <rect width="130" height="46"></rect>
+        <text x="65" y="28" text-anchor="middle">Retención</text>
+      </g>
+
+      <!-- Implementación -->
+      <g class="node" transform="translate(540,580)" data-title="Calendarización"
+         data-desc="Cronograma de acciones y asignación de responsables y recursos.">
+        <rect width="150" height="46"></rect>
+        <text x="75" y="28" text-anchor="middle">Calendarización</text>
+      </g>
+      <g class="node" transform="translate(710,580)" data-title="Plan piloto"
+         data-desc="Implementación controlada en un departamento para validar la estrategia.">
+        <rect width="120" height="46"></rect>
+        <text x="60" y="28" text-anchor="middle">Plan piloto</text>
+      </g>
+      <g class="node" transform="translate(850,580)" data-title="Comunicación"
+         data-desc="Comunicación corporativa por intranet, correo, memorandos y afiches.">
+        <rect width="150" height="46"></rect>
+        <text x="75" y="28" text-anchor="middle">Comunicación</text>
+      </g>
+
+      <!-- Seguimiento -->
+      <g class="node" transform="translate(940,640)" data-title="Monitoreo"
+         data-desc="Mecanismos de seguimiento regular de KPIs y tableros.">
+        <rect width="130" height="46"></rect>
+        <text x="65" y="28" text-anchor="middle">Monitoreo</text>
+      </g>
+      <g class="node" transform="translate(1080,640)" data-title="Revisión"
+         data-desc="Revisión periódica y ajustes según resultados.">
+        <rect width="120" height="46"></rect>
+        <text x="60" y="28" text-anchor="middle">Revisión</text>
+      </g>
+
+      <!-- Indicadores -->
+      <g class="node" transform="translate(200,820)" data-title="Rotación voluntaria"
+         data-desc="Porcentaje de salida de talento crítico sobre la plantilla total.">
+        <rect width="160" height="46"></rect>
+        <text x="80" y="28" text-anchor="middle">Rotación voluntaria</text>
+      </g>
+      <g class="node" transform="translate(380,820)" data-title="Time-to-Fill"
+         data-desc="Días entre la publicación de la vacante y la contratación efectiva.">
+        <rect width="120" height="46"></rect>
+        <text x="60" y="28" text-anchor="middle">Time-to-Fill</text>
+      </g>
+      <g class="node" transform="translate(520,820)" data-title="% Brechas cubiertas"
+         data-desc="(Competencias críticas alcanzadas / planificadas) × 100.">
+        <rect width="180" height="46"></rect>
+        <text x="90" y="28" text-anchor="middle">% Brechas cubiertas</text>
+      </g>
+      <g class="node" transform="translate(720,820)" data-title="Promociones internas"
+         data-desc="Promociones basadas en desempeño y potencial.">
+        <rect width="170" height="46"></rect>
+        <text x="85" y="28" text-anchor="middle">Promociones internas</text>
+      </g>
+      <g class="node" transform="translate(910,820)" data-title="Índice de compromiso (eNPS)"
+         data-desc="Diferencia entre promotores y detractores en encuestas internas.">
+        <rect width="220" height="46"></rect>
+        <text x="110" y="28" text-anchor="middle">Índice de compromiso (eNPS)</text>
+      </g>
+
+    </svg>
+    <div class="legend"><span class="dot"></span> Conexiones jerárquicas • Pasa el cursor por los nodos para más detalles</div>
+    <div class="hint">Sugerencia: usa Ctrl/Cmd + rueda para hacer zoom del navegador si necesitas ver más detalle.</div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip" role="dialog" aria-live="polite">
+  <div class="title" id="tt-title"></div>
+  <div class="desc" id="tt-desc"></div>
+</div>
+
+<script>
+(function(){
+  const tooltip = document.getElementById('tooltip');
+  const ttTitle = document.getElementById('tt-title');
+  const ttDesc  = document.getElementById('tt-desc');
+  let pinned = false;
+
+  function showTooltip(target, x, y){
+    ttTitle.textContent = target.getAttribute('data-title') || '';
+    ttDesc.textContent  = target.getAttribute('data-desc') || '';
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = (y - 10) + 'px';
+    tooltip.classList.add('show');
+  }
+
+  function hideTooltip(){
+    if(!pinned){
+      tooltip.classList.remove('show');
+    }
+  }
+
+  document.addEventListener('mousemove', (e)=>{
+    if (!pinned) {
+      tooltip.style.left = e.clientX + 'px';
+      tooltip.style.top  = (e.clientY - 10) + 'px';
+    }
+  }, {passive:true});
+
+  document.querySelectorAll('.node').forEach(node => {
+    node.addEventListener('mouseenter', (e) => {
+      const box = e.currentTarget.getBoundingClientRect();
+      showTooltip(e.currentTarget, box.left + box.width/2, box.top);
+    });
+    node.addEventListener('mouseleave', hideTooltip);
+    node.addEventListener('click', () => {
+      pinned = !pinned;
+      if(!pinned) hideTooltip();
+    });
+    node.setAttribute('tabindex', '0');
+    node.addEventListener('focus', (e) => {
+      const box = e.currentTarget.getBoundingClientRect();
+      showTooltip(e.currentTarget, box.left + box.width/2, box.top);
+    });
+    node.addEventListener('blur', hideTooltip);
+    node.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        pinned = !pinned;
+        if(!pinned) hideTooltip();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
